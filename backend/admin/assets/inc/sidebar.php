@@ -34,7 +34,20 @@
                                         <a href="his_admin_manage_patient.php">Kelola Pasien</a>
                                     </li>
                                 </ul>
+
+                                <li>
+                                <a href="javascript: void(0);">
+                                    <i class="mdi mdi-playlist-check"></i>
+                                    <span> Antrian </span>
+                                    <span class="menu-arrow"></span>
+                                </a>
+                                <ul class="nav-second-level" aria-expanded="false">
+                                    <li>
+                                        <a href="his_admin_view_queue.php">Kelola Antrian</a>
+                                    </li>
+                                </ul>
                             </li>
+
 
                             <li>
                                 <a href="javascript: void(0);">

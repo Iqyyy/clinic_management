@@ -41,11 +41,11 @@
                                     <div class="page-title-right">
                                         <ol class="breadcrumb m-0">
                                             <li class="breadcrumb-item"><a href="javascript: void(0);">Dashboard</a></li>
-                                            <li class="breadcrumb-item"><a href="javascript: void(0);">Pegawai</a></li>
-                                            <li class="breadcrumb-item active">Kelola Pegawai</li>
+                                            <li class="breadcrumb-item"><a href="javascript: void(0);">Antrian</a></li>
+                                            <li class="breadcrumb-item active">Kelola Antrian</li>
                                         </ol>
                                     </div>
-                                    <h4 class="page-title">Employee Details</h4>
+                                    <h4 class="page-title">Detail Antrian</h4>
                                 </div>
                             </div>
                         </div>     
@@ -79,8 +79,8 @@
                                             <tr>
                                                 <th>#</th>
                                                 <th data-toggle="true">Nama</th>
-                                                <th data-hide="phone">Role</th>
-                                                <th data-hide="phone">NO BPJS / IDI</th>
+                                                <th data-hide="phone">Spesialis</th>
+                                                <th data-hide="phone">NO IDI</th>
                                                 <th data-hide="phone">NIK</th>
                                                 <th data-hide="phone">Password</th>
                                                 <th data-hide="phone">Tanggal Lahir</th>
@@ -95,7 +95,7 @@
                                                 *get details of allpatients
                                                 *
                                             */
-                                                $ret="SELECT * FROM users WHERE level_user <> '3' ORDER BY RAND()"; 
+                                                $ret="SELECT * FROM users WHERE level_user = 2  "; 
                                                 //sql code to get to ten docs  randomly
                                                 $stmt= $mysqli->prepare($ret) ;
                                                 $stmt->execute() ;//ok
@@ -109,14 +109,7 @@
                                                 <tr>
                                                     <td><?php echo $cnt;?></td>
                                                     <td><?php echo $row->nama_user;?></td>
-                                                    <td><?php 
-                                                        $level_user = $row->level_user;
-                                                        if ($level_user == '1') {
-                                                            echo 'admin';
-                                                        } elseif ($level_user == '2') {
-                                                            echo 'dokter';
-                                                        }
-                                                    ?></td>
+                                                    <td><?php echo $row->spesialis?></td>
                                                     <td><?php echo $row->no_user;?></td>
                                                     <td><?php echo $row->nik;?></td>
                                                     <td><?php echo $row->pwd;?></td>
@@ -125,9 +118,7 @@
                                                     <td><?php echo $row->jk_user;?></td>
                                                     <td><?php echo $row->alamat_user;?></td>           
                                                     <td>
-                                                        <a href="his_admin_view_employee.php?delete=<?php echo $row->id_user;?>" class="badge badge-danger"><i class=" mdi mdi-trash-can-outline "></i> Delete</a>
-                                                        <a href="his_admin_view_single_employee.php?id_user=<?php echo $row->id_user;?>&&no_user=<?php echo $row->no_user;?>" class="badge badge-success"><i class="mdi mdi-eye"></i> View</a>
-                                                        <a href="his_admin_update_single_employee.php?id_user=<?php echo $row->id_user;?>" class="badge badge-primary"><i class="mdi mdi-check-box-outline "></i> Update</a>
+                                                        <a href="his_admin_view_single_queue.php?id_jadwal_dokter=<?php echo $row->id_user;?>&&no_user=<?php echo $row->no_user;?>" class="badge badge-success"><i class="mdi mdi-eye"></i> View</a>
                                                     </td>
                                                 </tr>
                                                 </tbody>
@@ -135,7 +126,7 @@
                                             <tfoot>
                                             <tr class="active">
                                                 <td colspan="11">
-                                                    <div class="text-right">
+                                                    <div class="footable-visible">
                                                         <ul class="pagination pagination-rounded justify-content-end footable-pagination m-t-10 mb-0"></ul>
                                                     </div>
                                                 </td>

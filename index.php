@@ -275,6 +275,36 @@ if(isset($_POST['submit'])){
 
 </section>
 
+<section class="appointment" id="appointment">
+
+    <h1 class="heading"> <span>appointment</span> now </h1>    
+
+    <div class="row">
+
+        <div class="image">
+            <img src="image/appointment-img.svg" alt="">
+        </div>
+
+        <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
+        <?php
+            if(isset($message)) {
+                foreach($message as $message) {
+                echo'<p class ="message">'.$message.'</p>';
+            }
+            }
+        ?>
+      
+            <h3>RESERVASI</h3>
+            <input type="text"name="nama_user" placeholder="Nama Lengkap" class="box">
+            <input type="date" name="tanggal" placeholder="Pilih Tanggal" class="box">
+            
+            <br><input type="submit" name="submit" value="DAFTAR" class="btn">
+        </form>
+
+    </div>
+
+</section>
+
 <!-- appointmenting section ends -->
 
 <!-- review section starts  -->
