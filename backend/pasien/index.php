@@ -9,35 +9,13 @@ $database = "klinik"; // Ganti dengan nama database yang digunakan
 // Membuat koneksi ke database
 $conn = mysqli_connect($host, $username, $password, $database);
 
+session_start();
+
 // Mengecek koneksi
 if (!$conn) {
     die("Koneksi gagal: " . mysqli_connect_error());
 }
-if(isset($_POST['submit'])){
 
-   $nama_user = mysqli_real_escape_string($conn, $_POST['nama_user']);
-   $nik = mysqli_real_escape_string($conn, $_POST['nik']);
-   $pwd = $_POST['pwd'];
-   $ttl_user = $_POST['ttl_user'];
-
-   $ttl_user = date("Y-m-d", strtotime($ttl_user));
-
-   $alamat_user = mysqli_real_escape_string($conn, $_POST['alamat_user']);
-   $no_telp_user = mysqli_real_escape_string($conn, $_POST['no_telp_user']);
-   $jk_user = $_POST['jk_user'];
-   $no_user = mysqli_real_escape_string($conn, $_POST['no_user']);
-
-
-
-   $insert = mysqli_query($conn, "INSERT INTO `users`(level_user, nama_user, spesialis, nik, pwd, ttl_user, alamat_user, no_telp_user, jk_user, no_user) VALUES('3', '$nama_user', 'member', '$nik', '$pwd', '$ttl_user', '$alamat_user', '$no_telp_user', '$jk_user', '$no_user')") or die('query failed');
-
-   if($insert){
-      $message[] = 'register berhasil!';
-   }else{
-      $message[] = 'register gagal';
-   }
-
-}
 ?> -->
 
 
@@ -53,7 +31,8 @@ if(isset($_POST['submit'])){
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
     <!-- custom css file link  -->
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../../css/style.css">
+
 
 </head>
 <body>
@@ -69,8 +48,19 @@ if(isset($_POST['submit'])){
         <a href="#about">about</a>
         <a href="#services">services</a>
         <a href="#doctors">doctors</a>
-        <a href="#appointment">daftar</a>
-        <a href="login.php">login</a>
+        <a href="#appointment">reservasi</a>
+        <a >
+        <?php
+            $id_user = $_SESSION["id_user"]; // Ambil id_user dari session
+            $query = "SELECT nama_user FROM users WHERE id_user = '$id_user'"; // Tambahkan kondisi WHERE id_user = '$id_user'
+            $result = mysqli_query($conn, $query);
+            $row = mysqli_fetch_assoc($result);
+            $nama_user = $row["nama_user"];
+            echo $nama_user;
+        ?>
+        </a>
+        <a href="../../logout.php">logout</a>
+
     </nav>
 
     <div id="menu-btn" class="fas fa-bars"></div>
@@ -84,7 +74,7 @@ if(isset($_POST['submit'])){
 <section class="home" id="home">
 
     <div class="image">
-        <img src="image/home-img.svg" alt="">
+        <img src="../../image/home-img.svg" alt="">
     </div>
 
     <div class="content">
@@ -138,7 +128,7 @@ if(isset($_POST['submit'])){
     <div class="row">
 
         <div class="image">
-            <img src="image/about-img.svg" alt="">
+            <img src="../../image/about-img.svg" alt="">
         </div>
 
         <div class="content">
@@ -213,7 +203,7 @@ if(isset($_POST['submit'])){
         // Perulangan untuk menampilkan data users
         while ($row = mysqli_fetch_assoc($result)) {
         echo '<div class="box" style="flex: 0 0 auto; width: 300px; margin-right: 20px;">';
-        echo '<img src="image/doc-1.jpg" alt="" style="width: 100%; height: auto;">';
+        echo '<img src="../../image/doc-1.jpg" alt="" style="width: 100%; height: auto;">';
         echo '<h3>'.$row['nama_user'].'</h3>';
         echo '<span>Spesialis '.$row['spesialis'].'</span>';
         echo '<div class="share">';
@@ -225,18 +215,20 @@ if(isset($_POST['submit'])){
     </div>
 </section>
 
+
+
 <!-- doctors section ends -->
 
 <!-- appointmenting section starts   -->
 
 <section class="appointment" id="appointment">
 
-    <h1 class="heading"> <span>appointment</span> now </h1>    
+    <h1 class="heading"> <span>reserve</span> now </h1>    
 
     <div class="row">
 
         <div class="image">
-            <img src="image/appointment-img.svg" alt="">
+            <img src="../../image/appointment-img.svg" alt="">
         </div>
 
         <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
@@ -248,31 +240,54 @@ if(isset($_POST['submit'])){
             }
         ?>
       
-            <h3>pendaftaran</h3>
-            <input type="text"name="nama_user" placeholder="Nama Lengkap" class="box">
-            <input type="text"name="nik" placeholder="Nomor Induk Kependudukan" class="box">
-            <input type="date" name="ttl_user" class="box">
-            <input type="text"name="alamat_user" placeholder="Alamat Lengkap" class="box">
-            <input type="phone"name="no_telp_user" placeholder="No. Telepon" class="box">
-            <select class="box" name="jk_user">
-                    <option value="jk" disabled>Jenis Kelamin</option>
-                    <option name="jk_user" value="L">Pria</option>>
-                    <option name="jk_user" value="P">Wanita</option>
+            <h3>RESERVASI</h3>
+            <input type="text" name="nama_user" id="doctor_name" placeholder="Nama Dokter" class="box" readonly>
+            <input type="date" name="tanggal" placeholder="Pilih Tanggal" class="box">
+            <select class="box" name="no_antrean">
+                    <option value="no_antrean" disabled>SESI</option>
+                    <option name="no_antrean" value="1">08.00 - 08.30</option>>
+                    <option name="no_antrean" value="2">08.30 - 09.00</option>
+                    <option name="no_antrean" value="3">09.00 - 09.30</option>>
+                    <option name="no_antrean" value="4">09.30 - 10.00</option>
+                    <option name="no_antrean" value="5">10.00 - 10.30</option>>
+                    <option name="no_antrean" value="6">10.30 - 11.00</option>
+                    <option name="no_antrean" value="7">11.00 - 11.30</option>>
+                    <option name="no_antrean" value="8">11.30 - 12.00</option>
+                    <option name="no_antrean" value="9">13.00 - 13.30</option>>
+                    <option name="no_antrean" value="10">13.30 - 14.00</option>
+                    <option name="no_antrean" value="11">14.00 - 14.30</option>>
+                    <option name="no_antrean" value="12">14.30 - 15.00</option>
+                    <option name="no_antrean" value="13">15.00 - 15.30</option>>
+                    <option name="no_antrean" value="14">15.30 - 16.00</option>
             </select>
-            <input type="text"name="no_user" placeholder="No. BPJS" class="box">
-            <input type="password"name="pwd" placeholder="Masukkan Password baru" class="box">
-            <input type="password"name="konfirmasi" placeholder="Konfirmasi Password" class="box">
-            <input type="submit" name="submit" value="DAFTAR" class="btn">
-            <p class="link">Sudah pernah mendaftar? Klik<a href="login.php"> Login</a></p>
+
             
+            <br><input type="submit" name="reservasi" value="RESERVASI" class="btn">
         </form>
 
     </div>
 
 </section>
+<script>
+    function changeDoctorName(doctorName) {
+        document.getElementById("doctor_name").value = doctorName;
+    }
+</script>
 
 <!-- appointmenting section ends -->
 
+<!-- invoice -->
+
+<section>
+
+    <div>
+        <a href="invoice1.php" style="text-align: center; display: block;">Unduh Bukti Reservasi</a>
+    </div>
+
+
+</section>
+
+<!-- invoice end -->
 <!-- review section starts  -->
 
 <section class="review" id="review">
@@ -282,7 +297,7 @@ if(isset($_POST['submit'])){
     <div class="box-container">
 
         <div class="box">
-            <img src="image/pic-1.jpg" alt="">
+            <img src="../../image/pic-1.jpg" alt="">
             <h3>angel</h3>
             <div class="stars">
                 <i class="fas fa-star"></i>
@@ -295,7 +310,7 @@ if(isset($_POST['submit'])){
         </div>
 
         <div class="box">
-            <img src="image/pic-1.jpg" alt="">
+            <img src="../../image/pic-1.jpg" alt="">
             <h3>angel</h3>
             <div class="stars">
                 <i class="fas fa-star"></i>
@@ -308,7 +323,7 @@ if(isset($_POST['submit'])){
         </div>
 
         <div class="box">
-            <img src="image/pic-1.jpg" alt="">
+            <img src="../../image/pic-1.jpg" alt="">
             <h3>angel</h3>
             <div class="stars">
                 <i class="fas fa-star"></i>
@@ -373,7 +388,7 @@ if(isset($_POST['submit'])){
 
 
 <!-- js file link  -->
-<script src="js/script.js"></script>
+<script src="../../js/script.js"></script>
 
 </body>
 </html>

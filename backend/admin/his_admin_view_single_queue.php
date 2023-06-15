@@ -91,11 +91,17 @@
                                                 *get details of allpatients
                                                 *
                                             */
-                                                $id_jadwal_dokter = $_GET['id_jadwal_dokter'];
-                                                $ret="SELECT antrean.*, users.nama_user, jadwal_dokter.hari, jadwal_dokter.jam FROM antrean JOIN jadwal_dokter ON antrean.id_jadwal_dokter = jadwal_dokter.id_jadwal JOIN users ON antrean.id_pasien = users.id_user WHERE antrean.id_jadwal_dokter = ? ORDER BY antrean.tanggal ASC"; 
+                                                $id_user = $_GET['id_user'];
+                                                $ret="SELECT antrean.*, users.nama_user, jadwal_dokter.hari, jadwal_dokter.jam 
+                                                FROM antrean 
+                                                JOIN jadwal_dokter ON antrean.id_jadwal_dokter = jadwal_dokter.id_jadwal
+                                                JOIN users ON antrean.id_pasien = users.id_user 
+                                                WHERE jadwal_dokter.id_user = ? 
+                                                ORDER BY antrean.tanggal ASC
+                                                "; 
                                                 //sql code to get to ten docs  randomly
                                                 $stmt= $mysqli->prepare($ret) ;
-                                                $stmt->bind_param('i',$id_jadwal_dokter);
+                                                $stmt->bind_param('i',$id_user);
                                                 $stmt->execute() ;//ok
                                                 $res=$stmt->get_result();
                                                 $cnt=1;

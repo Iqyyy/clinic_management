@@ -43,7 +43,8 @@
              // Jika user adalah dokter, maka simpan level user pada session dan redirect ke halaman utama dokter
              session_start();
              $_SESSION["level"] = "customer";
-             header("Location: pasien_dashboard.php");
+             $_SESSION["id_user"] = $users["id_user"];
+             header("Location: backend\pasien");
          } else {
              // Jika user tidak memiliki level yang sesuai, maka tampilkan pesan error
              echo "Level user tidak ditemukan.";
@@ -56,39 +57,6 @@
 
  // Menutup koneksi ke database
  mysqli_close($conn);
-//    session_start();
-//    include('backend/config.php'); //get configuration file
-   
-//    if (isset($_POST['user_login'])) {
-//        $nik = $_POST['nik'];
-//        $pwd = sha1(md5($_POST['pwd']));
-   
-//        $stmt = $mysqli->prepare("SELECT id_user, nik, pwd, level_user FROM users WHERE nik=? AND pwd=?");
-//        $stmt->bind_param('ss', $nik, $pwd);
-//        $stmt->execute();
-//        $stmt->bind_result($id_user, $nik, $pwd, $level_user);
-//        $stmt->store_result();
-   
-//        if ($stmt->num_rows == 1) {
-//            while ($stmt->fetch()) {
-//                $_SESSION['id_user'] = $id_user;
-//                $_SESSION['nik'] = $nik;
-//                $_SESSION['level_user'] = $level_user;
-   
-//                if ($level_user == "1") {
-//                    header("location: backend/admin/admin_dashboard.php");
-//                } elseif ($level_user == "2") {
-//                    header("location: backend/doc/dokter_dashboard.php");
-//                } elseif ($level_user == "3") {
-//                    header("location: backend/pasien/pasien_dashboard.php");
-//                } else {
-//                    $err = "Invalid login credentials.";
-//                }
-//            }
-//        } else {
-//            $err = "Invalid login credentials.";
-//        }
-//    }
     
 ?>
 <!--End Login-->

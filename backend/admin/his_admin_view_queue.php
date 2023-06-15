@@ -118,7 +118,7 @@
                                                     <td><?php echo $row->jk_user;?></td>
                                                     <td><?php echo $row->alamat_user;?></td>           
                                                     <td>
-                                                        <a href="his_admin_view_single_queue.php?id_jadwal_dokter=<?php echo $row->id_user;?>&&no_user=<?php echo $row->no_user;?>" class="badge badge-success"><i class="mdi mdi-eye"></i> View</a>
+                                                        <a href="his_admin_view_single_queue.php?id_user=<?php echo $row->id_user;?>&&no_user=<?php echo $row->no_user;?>" class="badge badge-success"><i class="mdi mdi-eye"></i> View</a>
                                                     </td>
                                                 </tr>
                                                 </tbody>

@@ -34,56 +34,6 @@
                 $err = "Access Denied Please Check Your Credentials";
             }
     }
-    // if(isset($_POST['admin_login']))
-    // {
-    //     // Mendapatkan nilai username dan password dari form
-    //     $nik = $_POST["nik"];
-    //     $pwd = $_POST["pwd"];
-        
-    //     // Query untuk memeriksa keberadaan user dengan username dan password yang sesuai
-    //     $sql = "SELECT id_user, nik, pwd FROM users WHERE nik = '$nik' AND pwd = '$pwd' ";
-    //     $result = mysqli_query($conn, $sql);
-    //     echo (mysqli_num_rows($result));
-
-    //     if (mysqli_num_rows($result) > 0) {
-    //         // Mendapatkan data user dari hasil query
-    //         $users = mysqli_fetch_assoc($result);
-    //         session_start();
-    //         $_SESSION['ad_id']=$id_user;
-    //         header("location:his_admin_dashboard.php");
-    //         echo "sukses";
-    //     }
-    //     else
-    //     {
-    //         #echo "<script>alert('Access Denied Please Check Your Credentials');</script>";
-    //             $err = "Access Denied Please Check Your Credentials";
-    //     }
-    // }
-    // session_start();
-    // include('assets/inc/config.php');//get configuration file
-    // if(isset($_POST['admin_login']))
-    // {
-    //     $ad_email=$_POST['ad_email'];
-    //     $ad_pwd=sha1(md5($_POST['ad_pwd']));//double encrypt to increase security
-    //     $stmt=$mysqli->prepare("SELECT ad_email ,ad_pwd , ad_id FROM his_admin WHERE ad_email=? AND ad_pwd=? ");//sql to log in user
-    //     $stmt->bind_param('ss',$ad_email,$ad_pwd);//bind fetched parameters
-    //     $stmt->execute();//execute bind
-    //     $stmt -> bind_result($ad_email,$ad_pwd,$ad_id);//bind result
-    //     $rs=$stmt->fetch();
-    //     $_SESSION['ad_id']=$ad_id;//Assign session to admin id
-    //     //$uip=$_SERVER['REMOTE_ADDR'];
-    //     //$ldate=date('d/m/Y h:i:s', time());
-    //     if($rs)
-    //         {//if its sucessfull
-    //             header("location:his_admin_dashboard.php");
-    //         }
-
-    //     else
-    //         {
-    //         #echo "<script>alert('Access Denied Please Check Your Credentials');</script>";
-    //             $err = "Access Denied Please Check Your Credentials";
-    //         }
-    // }
 ?>
 <!--End Login-->
 <!DOCTYPE html>
