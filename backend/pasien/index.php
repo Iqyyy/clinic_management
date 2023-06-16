@@ -241,25 +241,26 @@ if (!$conn) {
         ?>
       
             <h3>RESERVASI</h3>
-            <input type="text" name="nama_user" id="doctor_name" placeholder="Nama Dokter" class="box" readonly>
-            <input type="date" name="tanggal" placeholder="Pilih Tanggal" class="box">
-            <select class="box" name="no_antrean">
-                    <option value="no_antrean" disabled>SESI</option>
-                    <option name="no_antrean" value="1">08.00 - 08.30</option>>
-                    <option name="no_antrean" value="2">08.30 - 09.00</option>
-                    <option name="no_antrean" value="3">09.00 - 09.30</option>>
-                    <option name="no_antrean" value="4">09.30 - 10.00</option>
-                    <option name="no_antrean" value="5">10.00 - 10.30</option>>
-                    <option name="no_antrean" value="6">10.30 - 11.00</option>
-                    <option name="no_antrean" value="7">11.00 - 11.30</option>>
-                    <option name="no_antrean" value="8">11.30 - 12.00</option>
-                    <option name="no_antrean" value="9">13.00 - 13.30</option>>
-                    <option name="no_antrean" value="10">13.30 - 14.00</option>
-                    <option name="no_antrean" value="11">14.00 - 14.30</option>>
-                    <option name="no_antrean" value="12">14.30 - 15.00</option>
-                    <option name="no_antrean" value="13">15.00 - 15.30</option>>
-                    <option name="no_antrean" value="14">15.30 - 16.00</option>
-            </select>
+        <input type="text" name="nama_user" id="doctor_name" placeholder="Nama Dokter" class="box" readonly>
+        <input type="date" name="tanggal" placeholder="Pilih Tanggal" class="box" min="<?php echo date('Y-m-d'); ?>" max="<?php echo date('Y-m-d', strtotime('+1 month')); ?>">
+        <select class="box" name="no_antrean">
+            <option value="no_antrean" disabled>SESI</option>
+            <option name="no_antrean" value="1">08.00 - 08.30</option>
+            <option name="no_antrean" value="2">08.30 - 09.00</option>
+            <option name="no_antrean" value="3">09.00 - 09.30</option>
+            <option name="no_antrean" value="4">09.30 - 10.00</option>
+            <option name="no_antrean" value="5">10.00 - 10.30</option>
+            <option name="no_antrean" value="6">10.30 - 11.00</option>
+            <option name="no_antrean" value="7">11.00 - 11.30</option>
+            <option name="no_antrean" value="8">11.30 - 12.00</option>
+            <option name="no_antrean" value="9">13.00 - 13.30</option>
+            <option name="no_antrean" value="10">13.30 - 14.00</option>
+            <option name="no_antrean" value="11">14.00 - 14.30</option>
+            <option name="no_antrean" value="12">14.30 - 15.00</option>
+            <option name="no_antrean" value="13">15.00 - 15.30</option>
+            <option name="no_antrean" value="14">15.30 - 16.00</option>
+        </select>
+
 
             
             <br><input type="submit" name="reservasi" value="RESERVASI" class="btn">
