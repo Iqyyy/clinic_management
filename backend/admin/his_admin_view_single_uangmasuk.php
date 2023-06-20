@@ -106,7 +106,6 @@
                                                         <td><?php echo $row->biaya_tindakan; ?></td>
                                                         <td><?php echo $row->jumlah_tindakan; ?></td>
                                                         <td><?php echo $row->biaya_total_tindakan; ?></td>
-                                                        <td></td>
                                                     </tr>
                                                 </tbody>
                                                 <?php $total += $row->biaya_total_tindakan; ?>

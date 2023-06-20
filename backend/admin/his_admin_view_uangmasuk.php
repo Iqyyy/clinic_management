@@ -96,13 +96,9 @@
                                                 <tbody>
                                                 <tr>
                                                     <td><?php echo $cnt;?></td>
-                                                    <td><?php echo $row->id_rm;?></td>
+                                                    <td><?php echo $row->id_pembayaran;?></td>
                                                     <td><?php echo $row->biaya_total;?></td>
-                                                    <!-- <td><?php echo $row->harga_jual;?></td>
-                                                    <td><?php echo $row->harga_beli;?></td>
-                                                    <td><?php echo $row->stok_obat;?> <?php echo $row->satuan;?></td>
-                                                    <td><?php echo $row->exp_date;?></td> -->
-
+                                                  
                                                     <td><a href="his_admin_view_single_uangmasuk.php?id_pembayaran=<?php echo $row->id_pembayaran;?>" class="badge badge-success"><i class="far fa-eye "></i> View</a></td>
                                                 </tr>
                                                 </tbody>

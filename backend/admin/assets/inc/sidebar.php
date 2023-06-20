@@ -128,6 +128,9 @@
                                 </a>
                                 <ul class="nav-second-level" aria-expanded="false">
                                     <li>
+                                        <a href="his_admin_add_payment.php">Tambah Uang Masuk</a>
+                                    </li>
+                                    <li>
                                         <a href="his_admin_view_uangmasuk.php">Lihat Uang Masuk</a>
                                     </li>
                                     <li>
